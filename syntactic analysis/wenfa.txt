@@ -1,0 +1,69 @@
+Program -> FunctionDefinition_or_DeclarationStatement Program
+Program -> AssignmentFunction Program
+Program -> whileLoop Program
+Program -> ConditionalStatement Program
+Program -> get ( id variableClosure ) ; Program
+Program -> put ( id variableClosure ) ; Program
+Program -> ¦Å
+expression -> factors  term
+factors -> factor factorRecursion 
+factorRecursion -> * factor  factorRecursion
+factorRecursion -> / factor  factorRecursion
+factorRecursion -> % factor  factorRecursion
+term -> + factors term
+term -> - factors term
+term -> bitwiseOperators factors term
+term -> ¦Å
+factorRecursion -> ¦Å
+factor  -> ( expression )
+factor  -> variable
+factor  -> number
+variable -> id array
+array -> [ expression ]
+array -> ¦Å
+variableClosure -> , variable variableClosure
+variableClosure -> ¦Å
+FunctionDefinition_or_DeclarationStatement -> type id functionDefinition_or_Declaration
+functionDefinition_or_Declaration -> ( defineParameters ) { Program returnStatement } ;
+returnStatement -> return id ;
+functionDefinition_or_Declaration -> array variableClosure ;
+defineParameters -> type id defineParametersClosure 
+defineParametersClosure -> , type id defineParametersClosure
+defineParametersClosure -> ¦Å
+AssignmentFunction -> id Assignment_or_FunctionCall 
+Assignment_or_FunctionCall  -> array = rightValue ; 
+Assignment_or_FunctionCall  -> ( ParametersList ) ;
+rightValue -> expression  
+rightValue -> Boolean 
+Boolean -> true
+Boolean -> false
+ParametersList -> Parameter parameterClosure
+parameterClosure -> , Parameter parameterClosure
+parameterClosure -> ¦Å
+Parameter -> id
+Parameter -> number
+Parameter -> Boolean
+relation_or_logicalExpression -> ! rightValue
+relation_or_logicalExpression -> rightValue relation_or_logicalOperator M rightValue
+relation_or_logicalOperator -> logicalOperators
+relation_or_logicalOperator -> relationalOperators 
+bitwiseOperators -> &
+logicalOperators -> &&
+bitwiseOperators -> |
+logicalOperators -> ||
+relationalOperators -> <
+relationalOperators -> >
+relationalOperators -> ==
+relationalOperators -> <>
+relationalOperators -> >=
+relationalOperators -> <=
+whileLoop -> while ( M relation_or_logicalExpression ) { M Program } ;
+ConditionalStatement ->  if ( relation_or_logicalExpression ) { M Program } ; otherwiseStatement
+otherwiseStatement -> else { M Program } ;
+otherwiseStatement -> ¦Å
+type -> int
+type -> bool
+number -> digits
+number -> digits8
+number -> digits16
+M -> ¦Å
