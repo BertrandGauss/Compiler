@@ -30,3 +30,76 @@
 |+|	18|	digits8|	37|
 |-|	19|	digits|	38|
 |return	|39|		
+<br>
+二、语法分析<br>
+文法：<br>
+Program -> FunctionDefinition_or_DeclarationStatement Program<br>
+Program -> AssignmentFunction Program<br>
+Program -> whileLoop Program<br>
+Program -> ConditionalStatement Program<br>
+Program -> get ( id variableClosure ) ; Program<br>
+Program -> put ( id variableClosure ) ; Program<br>
+Program -> ε<br>
+expression -> factors  term<br>
+factors -> factor factorRecursion <br>
+factorRecursion -> * factor  factorRecursion<br>
+factorRecursion -> / factor  factorRecursion<br>
+factorRecursion -> % factor  factorRecursion<br>
+term -> + factors term<br>
+term -> - factors term
+term -> bitwiseOperators factors term<br>
+term -> ε<br>
+factorRecursion -> ε<br>
+factor  -> ( expression )<br>
+factor  -> variable<br>
+factor  -> number<br>
+variable -> id array<br>
+array -> [ expression ]<br>
+array -> ε<br>
+variableClosure -> , variable variableClosure<br>
+variableClosure -> ε<br>
+FunctionDefinition_or_DeclarationStatement -> type id functionDefinition_or_Declaration<br>
+functionDefinition_or_Declaration -> ( defineParameters ) { Program returnStatement } ;<br>
+returnStatement -> return id ;<br>
+functionDefinition_or_Declaration -> array variableClosure ;<br>
+defineParameters -> type id defineParametersClosure <br>
+defineParametersClosure -> , type id defineParametersClosure<br>
+defineParametersClosure -> ε<br>
+AssignmentFunction -> id Assignment_or_FunctionCall <br>
+Assignment_or_FunctionCall  -> array = rightValue ; <br>
+Assignment_or_FunctionCall  -> ( ParametersList ) ;<br>
+rightValue -> expression  <br>
+rightValue -> Boolean <br>
+Boolean -> true<br>
+Boolean -> false<br>
+ParametersList -> Parameter parameterClosure<br>
+parameterClosure -> , Parameter parameterClosure<br>
+parameterClosure -> ε<br>
+Parameter -> id<br>
+Parameter -> number<br>
+Parameter -> Boolean<br>
+relation_or_logicalExpression -> ! rightValue<br>
+relation_or_logicalExpression -> rightValue relation_or_logicalOperator M rightValue<br>
+relation_or_logicalOperator -> logicalOperators<br>
+relation_or_logicalOperator -> relationalOperators <br>
+bitwiseOperators -> &<br>
+logicalOperators -> &&<br>
+bitwiseOperators -> |<br>
+logicalOperators -> ||<br>
+relationalOperators -> <<br>
+relationalOperators -> ><br>
+relationalOperators -> ==<br>
+relationalOperators -> <><br>
+relationalOperators -> >=<br>
+relationalOperators -> <=<br>
+whileLoop -> while ( M relation_or_logicalExpression ) { M Program } ;<br>
+ConditionalStatement ->  if ( relation_or_logicalExpression ) { M Program } ; otherwiseStatement<br>
+otherwiseStatement -> else { M Program } ;<br>
+otherwiseStatement -> ε<br>
+type -> int<br>
+type -> bool<br>
+number -> digits<br>
+number -> digits8<br>
+number -> digits16<br>
+M -> ε<br>
+
