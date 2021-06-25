@@ -102,4 +102,4 @@ number -> digits<br>
 number -> digits8<br>
 number -> digits16<br>
 M -> ε<br>
-![image 图标](https://github.com/BertrandGauss/Compiler/tree/main/imgs/image.png)
+![Image text](https://raw.githubusercontent.com/BertrandGauss/Compiler/main/imgs/image.png)
