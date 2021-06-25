@@ -102,4 +102,6 @@ number -> digits<br>
 number -> digits8<br>
 number -> digits16<br>
 M -> ε<br>
-![Image text](https://raw.githubusercontent.com/BertrandGauss/Compiler/main/imgs/image.png)
+三、语义分析<br>
+设计翻译方案并生成了中间代码，中间代码为四元式形式的三地址码。
+
